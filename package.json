@@ -1,0 +1,21 @@
+{
+  "name": "supervisor-slack-bot",
+  "version": "0.0.1",
+  "description": "A slack bot for time-in / time-out reminders",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/cron": "^1.7.2",
+    "@types/dotenv": "^8.2.0",
+    "dotenv": "^8.2.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@slack/events-api": "^2.3.3",
+    "@slack/web-api": "^5.11.0",
+    "cron": "^1.8.2"
+  }
+}
