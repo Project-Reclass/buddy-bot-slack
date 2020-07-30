@@ -4,17 +4,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { BaseOptions } from './types';
+import { loadMergedConfig } from './utils';
 
-const CHANNEL_ID = process.env.CHANNEL || 'budy-bot-test';
-const TIME_ZONE = process.env.TIMEZONE || 'America/New_York';
+const config = loadMergedConfig();
+
+console.info({ config });
+
+const CHANNEL_ID = process.env.CHANNEL || config.channelId;
+const TIME_ZONE = process.env.TIMEZONE || config.timezone;
 
 const web = new WebClient(process.env.SLACK_TOKEN);
 
 const baseOptions: BaseOptions = {
   channel: CHANNEL_ID,
   parse: 'full',
-  username: 'Buddy Bot',
-  icon_emoji: ':sunglasses:',
+  username: config.username,
+  icon_emoji: config.emojiIcon,
 };
 
 function log(msg: string) {
@@ -28,7 +33,7 @@ function error(error: string) {
 async function postClockInReminder() {
   const res = await web.chat.postMessage({
     ...baseOptions,
-    text: '@channel Don\'t forget to clock in! :powerup:',
+    text: config.clockIn.text,
   });
 
   if (res.error)
@@ -40,7 +45,7 @@ async function postClockInReminder() {
 async function postClockOutReminder() {
   const res = await web.chat.postMessage({
     ...baseOptions,
-    text: '@channel Don\'t forget to clock out! :clockout:',
+    text: config.clockOut.text,
   });
 
   if (res.error)
@@ -51,12 +56,12 @@ async function postClockOutReminder() {
 
 function runAllJobsCron() {
   // register clock-in for M-W at 1pm EST
-  const clockIn = new CronJob('00 00 13 * * 1-3', () => {
+  const clockIn = new CronJob(config.clockIn.cronTime, () => {
     postClockInReminder();
   }, null, true, TIME_ZONE);
 
   // register clock-out for M-W at 6pm EST
-  const clockOut = new CronJob('00 00 19 * * 1-3', () => {
+  const clockOut = new CronJob(config.clockOut.cronTime, () => {
     postClockOutReminder();
   }, null, true, TIME_ZONE);
 

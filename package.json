@@ -2,16 +2,16 @@
   "name": "supervisor-slack-bot",
   "version": "0.0.1",
   "description": "A slack bot for clock-in / clock-out reminders",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "start": "npm run start:dev",
-    "start:prod": "node dist/index.js",
-    "start:dev": "tsc && node dist/index.js",
-    "clock-in": "node dist/index.js --clock-in",
+    "start:prod": "node dist/src/index.js",
+    "start:dev": "tsc && node dist/src/index.js",
+    "clock-in": "node dist/src/index.js --clock-in",
     "clock-in:dev": "tsc && npm run clock-in",
-    "clock-out": "node dist/index.js --clock-out",
+    "clock-out": "node dist/src/index.js --clock-out",
     "clock-out:dev": "tsc && npm run clock-out",
     "style:check": "eslint --ext .js --ext .jsx --ext tsx --ext ts . --quiet --cache",
     "style:fix": "eslint --ext .js --ext .jsx --ext tsx --ext ts . --quiet --fix --cache"
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/cron": "^1.7.2",
     "@types/dotenv": "^8.2.0",
+    "@types/node": "^14.0.27",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "eslint": "^7.5.0",
@@ -28,7 +29,7 @@
   "dependencies": {
     "@slack/events-api": "^2.3.3",
     "@slack/web-api": "^5.11.0",
-    "dotenv": "^8.2.0",
-    "cron": "^1.8.2"
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0"
   }
 }
