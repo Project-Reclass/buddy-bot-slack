@@ -19,3 +19,5 @@ export interface Config {
   clockIn: JobConfig;
   clockOut: JobConfig;
 }
+
+export type ConfigFile = Config[];

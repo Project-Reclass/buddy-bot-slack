@@ -1,16 +1,26 @@
 import defaultConfig from '../default-config.json';
 import userConfig from '../config.json';
 
-import { Config } from './types';
+import { Config, ConfigFile } from './types';
 
-export function loadDefaultConfig(): Config {
+export function loadConfigFile(): ConfigFile {
   return defaultConfig;
 }
 
-export function loadMergedConfig(): Config {
-  const defaultConfig = loadDefaultConfig();
-  return deepMerge(defaultConfig, userConfig);
+export function loadDefaultConfig(channelId: string): Config | null {
+  const configFile = loadConfigFile();
+  for (let config of configFile) {
+    if (config.channelId === channelId) {
+      return config;
+    }
+  }
+  return null;
 }
+
+// export function loadMergedConfig(): Config {
+//   const defaultConfig = loadDefaultConfig();
+//   return deepMerge(defaultConfig, userConfig);
+// }
 
 type SubObject = {[key: string]: any} & Object;
 export function deepMerge<T extends SubObject>(defaultObj: T, partialObj: SubObject): T {
