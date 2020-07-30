@@ -2,7 +2,7 @@
     "timezone": "America/New_York",
     "username": "Buddy Bot",
     "emojiIcon": ":sunglasses:",
-    "channelId": "budy-bot-test",
+    "channelId": "2020-team-voltron",
     "clockIn": {
         "cronTime": "00 00 13 * * 1-3",
         "text": "@channel Don't forget to clock in! :powerup:"
