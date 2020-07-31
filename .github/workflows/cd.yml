@@ -8,9 +8,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  steps:
+  deploy:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
