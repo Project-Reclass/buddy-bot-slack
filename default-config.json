@@ -12,6 +12,10 @@
             {
                 "cronTime": "00 50 0 * * 1-5",
                 "text": "Don't forget to clock out! :clockout:"
+            },
+            {
+                "cronTime":"00 30 17 * * 5",
+                "text": "Hello, there! I'm buddy bot! :wave:"
             }
         ]
     },

@@ -1,0 +1,41 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:909056806605:task-definition/buddy-bot-slack:1",
+    "containerDefinitions": [
+        {
+            "name": "reclass-bots",
+            "image": "909056806605.dkr.ecr.us-east-2.amazonaws.com/reclass-bots",
+            "cpu": 0,
+            "memoryReservation": 64,
+            "portMappings": [],
+            "essential": true,
+            "secrets": [
+                {
+                    "name": "SLACK_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-2:909056806605:secret:reclassltd-slack-token-N1Kiyo"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "buddy-bot-slack",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "memory": "64"
+}
