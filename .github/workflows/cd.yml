@@ -30,12 +30,7 @@ jobs:
         ECR_REPOSITORY: reclass-bots
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        ls -al
-        echo $pwd
-        echo $GITHUB_WORKSPACE
         cd $GITHUB_WORKSPACE
-        ls -al
-        echo $pwd
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
@@ -45,13 +40,13 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: my-container
+        container-name: reclass-bots
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: my-service
-        cluster: my-cluster
+        service: buddy-bot-service
+        cluster: reclass-containers
         wait-for-service-stability: true
