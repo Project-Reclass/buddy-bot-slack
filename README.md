@@ -55,20 +55,23 @@ The default values are
         "username": "Buddy Bot",
         "emojiIcon": ":sunglasses:",
         "channelId": "budy-bot-test",
-        "clockIn": {
-            "cronTime": "00 00 13 * * 1-3",
-            "text": "@channel Don't forget to clock in! :powerup:"
-        },
-        "clockOut": {
-            "cronTime": "00 00 19 * * 1-3",
-            "text": "@channel Don't forget to clock out! :clockout:"
-        }
+        "jobs": [
+            {
+                "cronTime": "00 00 13 * * 1-3",
+                "text": "@channel Don't forget to clock in! :powerup:"
+            },
+            {
+                "cronTime": "00 00 19 * * 1-3",
+                "text": "@channel Don't forget to clock out! :clockout:"
+            },
+            ...
+        ]
     },
     ...
 ]
 ```
 
-Additional jobs can in the `default-config.json` file.
+Additional jobs can be added in the `default-config.json` file.
 
 # Environment Variables
 
