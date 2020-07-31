@@ -14,7 +14,7 @@
                 "text": "Don't forget to clock out! :clockout:"
             },
             {
-                "cronTime":"00 38 18 * * 5",
+                "cronTime":"00 55 18 * * 5",
                 "text": "Hello, there! I'm buddy bot! :wave:"
             }
         ]
