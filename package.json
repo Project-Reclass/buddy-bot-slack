@@ -9,10 +9,6 @@
     "start": "npm run start:dev",
     "start:prod": "node dist/src/index.js",
     "start:dev": "tsc && node dist/src/index.js",
-    "clock-in": "node dist/src/index.js --clock-in",
-    "clock-in:dev": "tsc && npm run clock-in",
-    "clock-out": "node dist/src/index.js --clock-out",
-    "clock-out:dev": "tsc && npm run clock-out",
     "style:check": "eslint --ext .js --ext .jsx --ext tsx --ext ts . --quiet --cache",
     "style:fix": "eslint --ext .js --ext .jsx --ext tsx --ext ts . --quiet --fix --cache"
   },
@@ -27,7 +23,6 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@slack/events-api": "^2.3.3",
     "@slack/web-api": "^5.11.0",
     "cron": "^1.8.2",
     "dotenv": "^8.2.0"

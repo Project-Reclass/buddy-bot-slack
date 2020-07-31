@@ -49,39 +49,26 @@ Each value in the default.
 The default values are
 
 ```json
-{
-    "timezone": "America/New_York",
-    "username": "Buddy Bot",
-    "emojiIcon": ":sunglasses:",
-    "channelId": "budy-bot-test",
-    "clockIn": {
-        "cronTime": "00 00 13 * * 1-3",
-        "text": "@channel Don't forget to clock in! :powerup:"
+[
+    {
+        "timezone": "America/New_York",
+        "username": "Buddy Bot",
+        "emojiIcon": ":sunglasses:",
+        "channelId": "budy-bot-test",
+        "clockIn": {
+            "cronTime": "00 00 13 * * 1-3",
+            "text": "@channel Don't forget to clock in! :powerup:"
+        },
+        "clockOut": {
+            "cronTime": "00 00 19 * * 1-3",
+            "text": "@channel Don't forget to clock out! :clockout:"
+        }
     },
-    "clockOut": {
-        "cronTime": "00 00 19 * * 1-3",
-        "text": "@channel Don't forget to clock out! :clockout:"
-    }
-}
+    ...
+]
 ```
 
-Each one of these values can be changed by mounting a `config.json` to the docker container using
-
-```shell
-docker run -v $PWD/config.json:/app/dist/config.json \
-    -e SLACK_TOKEN={SLACK TOKEN} \
-    scottjr632/supervisor-slack-bot:latest {clock-in|clock-out| blank )
-```
-
-Example `config.json`
-
-```json
-{
-    "clockIn": {
-        "text": "This is a custom message!"
-    }
-}
-```
+Additional jobs can in the `default-config.json` file.
 
 # Environment Variables
 
@@ -89,16 +76,4 @@ Example `config.json`
 
 ```shell
 SLACK_TOKEN={token provided from slack}
-```
-
-## Optional
-
-```shell
-# The timezone to base node-cron on
-# https://momentjs.com/timezone/
-TIMEZONE={timezone according to moment} # default -> America/New_York
-
-# The channel id or name
-# Add '#' before name for public channels
-CHANNEL_ID={channel id} # default -> buddy-bot-test
 ```

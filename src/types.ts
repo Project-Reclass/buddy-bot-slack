@@ -16,8 +16,7 @@ export interface Config {
   emojiIcon: string;
   timezone: string;
   channelId: string;
-  clockIn: JobConfig;
-  clockOut: JobConfig;
+  jobs: JobConfig[];
 }
 
 export type ConfigFile = Config[];

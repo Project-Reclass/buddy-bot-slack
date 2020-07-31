@@ -4,7 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { BaseOptions, Config } from './types';
-import { loadConfigFile } from './utils';
+import { loadConfigFile } from './config';
+import * as utils from './utils';
 
 const configFile = loadConfigFile();
 
@@ -13,80 +14,46 @@ console.info({ config: configFile });
 const web = new WebClient(process.env.SLACK_TOKEN);
 
 const buildBaseOptions = (config: Config): BaseOptions => ({
-  channel: config.channelId,
   parse: 'full',
+  channel: config.channelId,
   username: config.username,
   icon_emoji: config.emojiIcon,
 });
 
-function log(msg: string) {
-  console.info(`Time: ${new Date().toDateString()} ${msg}`);
+async function sendJobMessage(text: string, baseOptions: BaseOptions) {
+  const res = await web.chat.postMessage({
+    text,
+    ...baseOptions,
+  });
+
+  if (res.error)
+    utils.error(res.error);
+  else
+    utils.log(`Successfully send text->\n${text}`);
 }
 
-function error(error: string) {
-  console.error(`Time: ${new Date().toDateString()} ${error}`);
-}
-function createRemindersJobsForChannel(config: Config) {
+function createJobsForChannelFromConfig(config: Config) {
   const baseOptions = buildBaseOptions(config);
-  const { timeZone } = baseOptions;
+  const { timezone } = config;
 
-  async function postClockInReminder() {
-    const res = await web.chat.postMessage({
-      ...baseOptions,
-      text: config.clockIn.text,
-    });
-
-    if (res.error)
-      error(res.error);
-    else
-      log('Sent check-in reminder!');
+  for (let job of config.jobs) {
+    new CronJob(job.cronTime, () => {
+      sendJobMessage(job.text, baseOptions);
+    }, null, true, timezone).start();
   }
+}
 
-  async function postClockOutReminder() {
-    const res = await web.chat.postMessage({
-      ...baseOptions,
-      text: config.clockOut.text,
-    });
-
-    if (res.error)
-      error(res.error);
-    else
-      log('Sent check-in reminder!');
+function runJobForAllChannels() {
+  for (let config of configFile) {
+    createJobsForChannelFromConfig(config);
   }
-
-  function runAllJobsCron() {
-    // register clock-in for M-W at 1pm EST
-    const clockIn = new CronJob(config.clockIn.cronTime, () => {
-      postClockInReminder();
-    }, null, true, timeZone);
-
-    // register clock-out for M-W at 6pm EST
-    const clockOut = new CronJob(config.clockOut.cronTime, () => {
-      postClockOutReminder();
-    }, null, true, timeZone);
-
-    console.info('Starting jobs clock-in and clock-out jobs...');
-    clockIn.start();
-    clockOut.start();
-  };
-
-  const cmds = new Map<string, () => any>();
-  cmds.set('--all', runAllJobsCron);
-  cmds.set('--clock-in', postClockInReminder);
-  cmds.set('--clock-out', postClockOutReminder);
-
-
-  (async () => {
-    const fn = cmds.get(process.argv[2]) || runAllJobsCron;
-    await fn();
-    console.info('Finished script');
-  })();
 }
 
 (async () => {
+  const cmds = new Map<string, () => any>();
+  cmds.set('--all', runJobForAllChannels);
 
-  for (let config of configFile) {
-    createRemindersJobsForChannel(config);
-  }
-
+  const fn = cmds.get(process.argv[2]) || runJobForAllChannels;
+  await fn();
+  console.info('Finished running jobs...');
 })();
