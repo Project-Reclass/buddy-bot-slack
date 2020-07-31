@@ -29,6 +29,7 @@ jobs:
         ECR_REPOSITORY: reclass-bots
         IMAGE_TAG: ${{ github.sha }}
       run: |
+        cd $GITHUB_WORKSPACE
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
