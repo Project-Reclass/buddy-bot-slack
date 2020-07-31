@@ -18,7 +18,7 @@
             "volumesFrom": []
         }
     ],
-    "executionRoleArn": "arn:aws:iam::909056806605:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+    "executionRoleArn": "arn:aws:iam::909056806605:role/ecsTaskExecutionRole",
     "family": "buddy-bot-slack",
     "revision": 1,
     "volumes": [],
