@@ -10,7 +10,7 @@
             "essential": true,
             "secrets": [
                 {
-                    "name": "SLACK_KEY",
+                    "name": "SLACK_TOKEN",
                     "valueFrom": "arn:aws:secretsmanager:us-east-2:909056806605:secret:reclassltd-slack-token-N1Kiyo"
                 }
             ],
