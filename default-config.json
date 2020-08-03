@@ -19,15 +19,15 @@
         "timezone": "America/Monterrey",
         "username": "Buddy Bot",
         "emojiIcon": ":sunglasses:",
-        "channelId": "budy-bot-test",
+        "channelId": "volunteers",
         "jobs": [
             {
-                "cronTime": "00 45 23 * * 1-5",
-                "text": "Don't forget to clock in! :powerup:"
+                "cronTime": "00 00 10 * * 1-2",
+                "text": "@channel Don't forget to clock in! :powerup:"
             },
             {
-                "cronTime": "00 50 23 * * 1-5",
-                "text": "Don't forget to clock out! :clockout:"
+                "cronTime": "00 00 13 * * 1-2",
+                "text": "@channel Don't forget to clock out! :clockout:"
             }
         ]
     }
