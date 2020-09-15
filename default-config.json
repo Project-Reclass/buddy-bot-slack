@@ -19,7 +19,7 @@
         "timezone": "America/Monterrey",
         "username": "Buddy Bot",
         "emojiIcon": ":sunglasses:",
-        "channelId": "volunteers",
+        "channelId": "reclass-admin",
         "jobs": [
             {
                 "cronTime": "00 00 10 * * 1-2",
