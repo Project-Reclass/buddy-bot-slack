@@ -14,21 +14,5 @@
                 "text": "@channel Don't forget to clock out! :clockout:"
             }
         ]
-    },
-    {
-        "timezone": "America/Chicago",
-        "username": "Buddy Bot",
-        "emojiIcon": ":partygopher:",
-        "channelId": "admin-engies",
-        "jobs": [
-            {
-                "cronTime": "00 00 07 * * 1-5",
-                "text": "@channel Don't forget to clock in! :partyblobcat:"
-            },
-            {
-                "cronTime": "00 00 12 * * 1-5",
-                "text": "@channel Don't forget to clock out! :clockout:"
-            }
-        ]
     }
 ]
