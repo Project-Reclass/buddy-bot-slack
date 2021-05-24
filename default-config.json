@@ -2,8 +2,8 @@
     {
         "timezone": "America/New_York",
         "username": "Buddy Bot",
-        "emojiIcon": ":sunglasses:",
-        "channelId": "2020-team-voltron",
+        "emojiIcon": ":rocket:",
+        "channelId": "2021-team-rocket-launch",
         "jobs": [
             {
                 "cronTime": "00 00 19 * * 1",
@@ -18,23 +18,7 @@
     {
         "timezone": "America/New_York",
         "username": "Buddy Bot",
-        "emojiIcon": ":sunglasses:",
-        "channelId": "2020-team-sunny-cloud",
-        "jobs": [
-            {
-                "cronTime": "00 00 19 * * 1",
-                "text": "@channel Don't forget to clock in! :powerup:"
-            },
-            {
-                "cronTime": "00 00 22 * * 1",
-                "text": "@channel Don't forget to clock out! :clockout:"
-            }
-        ]
-    },
-    {
-        "timezone": "America/New_York",
-        "username": "Buddy Bot",
-        "emojiIcon": ":sunglasses:",
+        "emojiIcon": ":mega:",
         "channelId": "2021-team-amplify",
         "jobs": [
             {
