@@ -22,22 +22,6 @@
         "channelId": "2021-team-amplify",
         "jobs": [
             {
-                "cronTime": "00 00 15 * * 0",
-                "text": "@channel Don't forget to clock in! :powerup:"
-            },
-            {
-                "cronTime": "00 00 17 * * 0",
-                "text": "@channel Don't forget to clock out! :clockout:"
-            }
-        ]
-    },
-    {
-        "timezone": "America/New_York",
-        "username": "Buddy Bot",
-        "emojiIcon": ":sunglasses:",
-        "channelId": "2021-team-sunshine",
-        "jobs": [
-            {
                 "cronTime": "00 00 13 * * 1",
                 "text": "@channel Don't forget to clock in! :powerup:"
             },
@@ -46,11 +30,11 @@
                 "text": "@channel Don't forget to clock out! :clockout:"
             },
             {
-                "cronTime": "00 00 13 * * 3",
+                "cronTime": "00 00 13 * * 2",
                 "text": "@channel Don't forget to clock in! :powerup:"
             },
             {
-                "cronTime": "00 00 14 * * 3",
+                "cronTime": "00 00 14 * * 2",
                 "text": "@channel Don't forget to clock out! :clockout:"
             }
 
