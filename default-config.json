@@ -29,7 +29,7 @@
                 "cronTime": "00 00 14 * * 1",
                 "text": "@channel Don't forget to clock out! :clockout:"
             },
-                        {
+            {
                 "cronTime": "00 00 13 * * 2",
                 "text": "@channel Don't forget to clock in! :powerup:"
             },
