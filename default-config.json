@@ -39,5 +39,22 @@
             }
 
         ]
+    },
+
+	{   
+        "timezone": "America/New_York",
+        "username": "Buddy Bot",
+        "emojiIcon": ":coffeegopher:",
+        "channelId": "2021-team-avengers",
+        "jobs": [
+            {   
+                "cronTime": "00 00 10 * * 1-5",
+                "text": "@channel Don't forget to clock in! :powerup:"
+            },  
+            {   
+                "cronTime": "00 00 18 * * 1-5",
+                "text": "@channel Don't forget to clock out! :clockout:"
+            }  
+        ]
     }
 ]
