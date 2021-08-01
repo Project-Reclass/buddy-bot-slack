@@ -1,4 +1,5 @@
 import express from 'express';
+import axios from 'axios';
 import { WebClient } from '@slack/web-api';
 
 import { loadConfigFile } from './config';
@@ -7,6 +8,35 @@ import path from 'path';
 
 const port = 3333;
 const app = express();
+
+const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
+
+interface Config {
+  client_id: string;
+  client_secret: string;
+}
+
+interface AuthTokenResponse {
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+  refresh_token_expires_in: number;
+  token_type: string;
+  scope: string;
+}
+
+
+export const getAuthToken = async (code: string, config: Config): Promise<AuthTokenResponse> => {
+  const res = await axios.post('https://github.com/login/oauth/access_token', {
+    code,
+    ...config,
+  }, {
+    headers: {
+      'Accept': 'application/json',
+    }
+  });
+return res.data;
+}
 
 app.use(express.json());
 
@@ -47,6 +77,15 @@ app.put('/config', (req, res) => {
     res.status(201);
     res.send();
   })
+});
+
+app.post('/auth-token', async (req, res) => {
+  const { code } = req.body;
+  const response = await getAuthToken(code, {
+    client_id: 'Iv1.6809fb9d81d62333',
+    client_secret: githubClientSecret || '',
+  });
+  res.send(response);
 })
 
 app.listen(port, () => {
