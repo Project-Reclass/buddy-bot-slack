@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "start:server": "npm run --prefix server start",
+    "start:client": "npm run --prefix client start"
+  }
+}

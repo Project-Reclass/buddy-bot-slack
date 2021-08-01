@@ -1,6 +1,10 @@
 import express from 'express';
 import { WebClient } from '@slack/web-api';
 
+import { loadConfigFile } from './config';
+import { copyFileSync, writeFile } from 'fs';
+import path from 'path';
+
 const port = 3333;
 const app = express();
 
@@ -23,6 +27,27 @@ app.post('/test-auth', async (req, res) => {
     });
   }
 });
+
+app.get('/config', (_, res) => {
+  const config = loadConfigFile();
+  res.send(config);
+});
+
+app.put('/config', (req, res) => {
+  const { config } = req.body;
+  const configFilePath = path.resolve('default-config.json');
+  const configBakFilePath = path.resolve('default-config.json.bak');
+  copyFileSync(configFilePath, configBakFilePath);
+  writeFile('default-config.json', JSON.stringify(config), err => {
+    if (err) {
+      res.status(500);
+      res.send({ error: err.message });
+      return;
+    }
+    res.status(201);
+    res.send();
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

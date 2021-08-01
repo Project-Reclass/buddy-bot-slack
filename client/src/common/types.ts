@@ -12,3 +12,18 @@ export interface AuthTestResponse {
     scopes: string[];
   }
 }
+
+export type Config = Channel[];
+
+export interface Channel {
+  timezone: string;
+  username: string;
+  emojiIcon: string;
+  channelId: string;
+  jobs: Job[];
+}
+
+export interface Job {
+  cronTime: string;
+  text: string;
+}
